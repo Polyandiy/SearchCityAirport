@@ -40,10 +40,17 @@ private extension SearchCityViewModel {
     }
     
     func process() -> Void {
-        self.airportService.fetchAirports()
+//        self.airportService.fetchAirports()
+//            .map({ (airports) in
+//                print("airports: \(airports)")
+//            })
+//            .subscribe().disposed(by: bag )
+        self.airportService
+            .fetchAirports()
             .map({ (airports) in
                 print("airports: \(airports)")
             })
-            .subscribe().disposed(by: bag )
+            .subscribe()
+            .disposed(by: bag)
     }
 }
