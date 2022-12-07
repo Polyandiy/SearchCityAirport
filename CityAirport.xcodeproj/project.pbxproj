@@ -144,16 +144,12 @@
 		CE614BB5293F512B00C4FDC0 /* CityAirport */ = {
 			isa = PBXGroup;
 			children = (
-				CE614C152940CBDF00C4FDC0 /* Location */,
-				CE614C0C2940CACC00C4FDC0 /* Router */,
+				CE614C1A2940D10900C4FDC0 /* Helper */,
 				CE614BE8293FAB7200C4FDC0 /* Model */,
-				CE614BDA293FA29000C4FDC0 /* NetworkService */,
-				CE614BD5293F8D5A00C4FDC0 /* Shared */,
 				CE614BCE293F8B7000C4FDC0 /* Coordinator */,
 				CE614BCB293F816800C4FDC0 /* ViewModel */,
 				CE614BCA293F816000C4FDC0 /* View */,
-				CE614BB6293F512B00C4FDC0 /* AppDelegate.swift */,
-				CE614BB8293F512B00C4FDC0 /* SceneDelegate.swift */,
+				CE614C1B2940D13500C4FDC0 /* Application */,
 				CE614BBC293F512B00C4FDC0 /* Main.storyboard */,
 				CE614BBF293F512E00C4FDC0 /* Assets.xcassets */,
 				CE614BC1293F512E00C4FDC0 /* LaunchScreen.storyboard */,
@@ -281,6 +277,26 @@
 				CE614C162940CBEB00C4FDC0 /* LocationService.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		CE614C1A2940D10900C4FDC0 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CE614BD5293F8D5A00C4FDC0 /* Shared */,
+				CE614BDA293FA29000C4FDC0 /* NetworkService */,
+				CE614C0C2940CACC00C4FDC0 /* Router */,
+				CE614C152940CBDF00C4FDC0 /* Location */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		CE614C1B2940D13500C4FDC0 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				CE614BB6293F512B00C4FDC0 /* AppDelegate.swift */,
+				CE614BB8293F512B00C4FDC0 /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

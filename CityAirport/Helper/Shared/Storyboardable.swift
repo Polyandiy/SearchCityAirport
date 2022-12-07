@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+/**
+ [Credit](https://www.hackingwithswift.com/articles/71/how-to-use-the-coordinator-pattern-in-ios-apps)
+ */
+
 protocol Storyboardable {
     static func instantiate() -> Self
 }
