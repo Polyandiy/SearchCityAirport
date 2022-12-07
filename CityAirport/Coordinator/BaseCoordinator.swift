@@ -9,6 +9,7 @@ import Foundation
 
 class BaseCoordinator: CoordinatorProtocol {
     var childCoordinators: [CoordinatorProtocol] = []
+    var isCompleted: (() -> ())?
     
     func start() {
         fatalError("Children should implemented 'start'.")
