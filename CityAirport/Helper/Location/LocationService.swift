@@ -38,7 +38,6 @@ final class LocationService: NSObject {
     }
 }
 
-
 // MARK: -Extension: CLLocationManagerDelegate
 extension LocationService: CLLocationManagerDelegate {
 

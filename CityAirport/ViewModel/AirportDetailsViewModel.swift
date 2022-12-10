@@ -67,7 +67,7 @@ private extension AirportDetailsViewModel {
             return AirportMapViewModel(
                 airport: (
                     name: airportModel.name
-                    , city: airportModel.city 
+                    , city: airportModel.city ?? "NA"
                 ),
                 currentLocation: currentLocation,
                 airportLocation: airportLocation

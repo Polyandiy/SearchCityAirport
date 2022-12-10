@@ -47,7 +47,7 @@ extension AirportViewModel {
     ) {
         self.name = model.name
         self.code = model.code
-        self.address = "\(model.state ?? ""), \(model.country )"
+        self.address = "\(model.state ?? ""), \(model.country ?? "NA")"
         self.runwayLength = "Runway Length: \(model.runwayLength ?? "NA")"
         self.location = (lat: model.lat, lon: model.lon)
         // MARK: FIXME - Distancing calculation from current location to airport

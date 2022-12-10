@@ -7,8 +7,8 @@
 
 import Alamofire
 
-protocol NetworkService {
+/// Session and Request
+protocol HttpService {
     var sessionManager: Session { get set }
-    
-    func request(_ urlRequest: URLRequestConvertible) -> DataRequest
+    func request(_ urlReqeust: URLRequestConvertible) -> DataRequest
 }

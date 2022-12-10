@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-
 /**
 [Credit](https://benoitpasquier.com/coordinator-pattern-navigation-back-button-swift)
  */

@@ -7,14 +7,13 @@
 
 import Foundation
 
-class BaseCoordinator: CoordinatorProtocol {
-    var childCoordinators: [CoordinatorProtocol] = []
+class BaseCoordinator: Coordinator {
+
+    var childCoordinator: [Coordinator] = []
     var isCompleted: (() -> ())?
     
     func start() {
-        fatalError("Children should implemented 'start'.")
+        fatalError("Child coordinator should implement 'start' function.")
     }
-    
-    
 }
 

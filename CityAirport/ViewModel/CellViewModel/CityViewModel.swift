@@ -8,7 +8,7 @@
 import Foundation
 import RxDataSources
 
-
+/// sections and data for UITableView
 typealias CityItemsSection = SectionModel<Int, CityViewModel>
 
 protocol CityViewPresentable {
@@ -16,6 +16,7 @@ protocol CityViewPresentable {
     var location: String { get }
 }
 
+/// tableview cell view model
 struct CityViewModel: CityViewPresentable {
 
     var city: String
@@ -25,8 +26,8 @@ struct CityViewModel: CityViewPresentable {
 extension CityViewModel {
 
     init(model: AirportModel) {
-        self.city = model.city 
-        self.location = "\(model.state ?? ""), \(model.country )"
+        self.city = model.city ?? ""
+        self.location = "\(model.state ?? ""), \(model.country ?? "")"
     }
 }
 

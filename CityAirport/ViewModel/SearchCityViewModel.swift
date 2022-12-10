@@ -7,33 +7,35 @@
 
 import RxCocoa
 import RxSwift
+import RxDataSources
 
-protocol SearchCityVMProtocol {
-    
+protocol SearchCityViewPresentable {
     /// Data From ViewController to ViewModel
     typealias Input = (
         searchText: Driver<String>,
         selectedCity: Driver<CityViewModel>
     )
+
     /// Data From ViewModel to ViewController
     typealias Output = (
         cities: Driver<[CityItemsSection]>, ()
     )
-    // as presentable : passing Input makes ViewModel
-    typealias ViewModelBuilder = (SearchCityVMProtocol.Input) -> SearchCityVMProtocol
-    
-    var input: SearchCityVMProtocol.Input { get }
-    var output: SearchCityVMProtocol.Output { get }
+
+    /// as presentable : passing Input makes ViewModel
+    typealias ViewModelBuilder = (SearchCityViewPresentable.Input) -> SearchCityViewPresentable
+
+    var input: SearchCityViewPresentable.Input { get }
+    var output: SearchCityViewPresentable.Output { get }
 }
 
+class SearchCityViewModel: SearchCityViewPresentable {
 
-class SearchCityViewModel: SearchCityVMProtocol {
-    
-    var input: SearchCityVMProtocol.Input
-    var output: SearchCityVMProtocol.Output
-    private var airportService: AirportApiProtocol
-    let bag = DisposeBag()
-    
+    var input: SearchCityViewPresentable.Input
+    var output: SearchCityViewPresentable.Output
+    private let airportService: AirportAPI
+
+    private let bag = DisposeBag()
+
     /// API response state with Set of AirportModel
     typealias State = (airports: BehaviorRelay<Set<AirportModel>>, ())
     /// API response state with Set of AirportModel
@@ -45,19 +47,23 @@ class SearchCityViewModel: SearchCityVMProtocol {
     typealias Routing = (selectedCity: Driver<Set<AirportModel>>, ())
     lazy var router: Routing = (selectedCity: self.routingAction.selectedCityRelay.asDriver(onErrorDriveWith: .empty()), ())
 
-    init(input: SearchCityVMProtocol.Input,
-         airportService: AirportApiProtocol) {
+    init(input: SearchCityViewPresentable.Input,
+         airportService: AirportAPI) {
         self.input = input
-        self.output = SearchCityViewModel.output(input: self.input,state: state)
+        self.output = SearchCityViewModel.output(
+            input: self.input,
+            state: state
+        )
         self.airportService = airportService
         self.process()
     }
 }
 
+// -MARK: Extension
 private extension SearchCityViewModel {
 
-    static func output(input: SearchCityVMProtocol.Input,
-                       state: State) -> SearchCityVMProtocol.Output {
+    static func output(input: SearchCityViewPresentable.Input,
+                       state: State) -> SearchCityViewPresentable.Output {
 
         let searchTextObservable = input.searchText
             .debounce(.milliseconds(300)) // get text after 300 millis
@@ -76,10 +82,10 @@ private extension SearchCityViewModel {
             .map { (searchKey, airports) in
             return airports.filter { (airport) -> Bool in // filtering searchText
                 !searchKey.isEmpty &&
-                ((airport.city
+                    ((airport.city?
                     .lowercased()
                     .replacingOccurrences(of: " ", with: "")
-                    .hasPrefix(searchKey.lowercased())) )
+                    .hasPrefix(searchKey.lowercased())) ?? false)
             }
         }
             .map {

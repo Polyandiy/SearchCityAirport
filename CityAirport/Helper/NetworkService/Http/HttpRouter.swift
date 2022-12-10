@@ -7,26 +7,27 @@
 
 import Alamofire
 
+/// Router interface
 protocol HttpRouter {
-    var baseUrlString: String {get}
-    var path: String {get}
-    var method: HTTPMethod {get}
-    var headers: HTTPHeaders? {get}
-    var parameters: Parameters? {get}
-    
+
+    var baseUrl: String { get }
+    var path: String { get }
+    var method: HTTPMethod { get }
+    var headers: HTTPHeaders? { get }
+    var params: Parameters? { get }
     func body() throws -> Data?
-    
-    func request(usingNetworkService service: NetworkService) throws -> DataRequest
+
+    func request(usingHttpService service: HttpService) throws -> DataRequest
 }
 
 extension HttpRouter {
-    
-    var parameters: Parameters? {return nil}
-    var headers: HTTPHeaders? {return nil}
-    func body() throws -> Data? {return nil}
-    
+
+    var headers: HTTPHeaders? { return nil }
+    var params: Parameters? { return nil }
+    func body() throws -> Data? { return nil }
+
     func asUrlRequest() throws -> URLRequest {
-        var url = try baseUrlString.asURL()
+        var url = try baseUrl.asURL()
         url.appendPathComponent(path)
 
         var request = try URLRequest(url: url, method: method, headers: headers)
@@ -34,7 +35,7 @@ extension HttpRouter {
         return request
     }
 
-    func request(usingNetworkService service: NetworkService) throws -> DataRequest {
+    func request(usingHttpService service: HttpService) throws -> DataRequest {
         return try service.request(asUrlRequest())
     }
 }

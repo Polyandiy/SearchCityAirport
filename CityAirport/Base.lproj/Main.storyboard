@@ -55,8 +55,8 @@
                     </view>
                     <connections>
                         <outlet property="roundedView" destination="tLn-p5-5DB" id="s7x-74-DK9"/>
+                        <outlet property="searchTableView" destination="CJy-Qp-tC9" id="zLU-TH-zb2"/>
                         <outlet property="searchTextField" destination="NjG-Yp-6I6" id="rI7-jt-yF2"/>
-                        <outlet property="tableView" destination="CJy-Qp-tC9" id="LHQ-02-ksg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -66,7 +66,7 @@
         <!--Airport View Controller-->
         <scene sceneID="CVJ-T2-R8O">
             <objects>
-                <viewController storyboardIdentifier="AirportViewController" id="9DK-4p-3ZN" customClass="AirportViewController" customModule="CityAirportSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AirportViewController" id="9DK-4p-3ZN" customClass="AirportViewController" customModule="CityAirport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ubd-H1-iCQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -96,7 +96,7 @@
         <!--Airport Details View Controller-->
         <scene sceneID="yLs-Xs-X8B">
             <objects>
-                <viewController storyboardIdentifier="AirportDetailsViewController" id="imC-Pm-Xpo" customClass="AirportDetailsViewController" customModule="CityAirportSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AirportDetailsViewController" id="imC-Pm-Xpo" customClass="AirportDetailsViewController" customModule="CityAirport" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ttr-bV-SQF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

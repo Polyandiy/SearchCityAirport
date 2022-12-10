@@ -5,7 +5,6 @@
 //  Created by Поляндий on 07.12.2022.
 //
 
-import Foundation
 import UIKit
 
 final class Router: NSObject {
@@ -22,13 +21,17 @@ final class Router: NSObject {
 }
 
 extension Router: Routing {
-    func push(_ drawable: Drawable, isAnimated: Bool, onNavigationBack closure: NavigationBackClosure?) {
+    func push(_ drawable: Drawable,
+              isAnimated: Bool,
+              onNavigationBack closure: NavigationBackClosure?
+    ) {
         guard let viewController = drawable.viewController else { return }
 
         // capture NavigationBackClosure
         if let closure = closure {
             closures.updateValue(closure, forKey: viewController.description)
         }
+
         navigationController.pushViewController(viewController, animated: isAnimated)
     }
 
@@ -40,20 +43,26 @@ extension Router: Routing {
         navigationController.popToRootViewController(animated: isAnimated)
     }
 
-    func present(_ drawable: Drawable, isAnimated: Bool, onDismiss: NavigationBackClosure?) {
+    func present(_ drawable: Drawable,
+                 isAnimated: Bool,
+                 onDismiss: NavigationBackClosure?
+    ) {
         guard let viewController = drawable.viewController else { return }
 
         if let closure = onDismiss {
             closures.updateValue(closure, forKey: viewController.description)
         }
+
         navigationController.present(viewController, animated: isAnimated)
         viewController.presentationController?.delegate = self // UIAdaptivePresentationControllerDelegate
     }
+
 
     func executeClosure(_ viewController: UIViewController) {
         guard let closure = closures.removeValue(forKey: viewController.description) else {
             return
         }
+
         closure()
     }
 }
@@ -69,10 +78,12 @@ extension Router: UINavigationControllerDelegate {
         guard let previousController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
             return
         }
+
         guard !navigationController.viewControllers.contains(previousController) else {
             // previousController still in navigation stack
             return
         }
+
         // pop - remove child coordinator
         executeClosure(previousController)
     }
