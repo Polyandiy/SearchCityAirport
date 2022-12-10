@@ -5,7 +5,6 @@
 //  Created by Поляндий on 07.12.2022.
 //
 
-import Foundation
 import UIKit
 import MapKit
 import RxSwift
@@ -133,7 +132,7 @@ extension AirportDetailsViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
 
         let renderer = MKPolylineRenderer(overlay: overlay)
-        renderer.strokeColor = .reddishPink
+        renderer.strokeColor = .systemIndigo
         renderer.lineWidth = 2.0
         return renderer
     }
